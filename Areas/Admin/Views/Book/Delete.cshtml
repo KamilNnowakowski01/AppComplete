@@ -1,0 +1,38 @@
+﻿@model AppModel.Models.Book
+
+@{
+    ViewData["Title"] = "Delete Book";
+}
+
+<h2>Book Delete #@Model.PublisherId</h2>
+
+<form asp-action="Delete" method="post" class="mt-4">
+    <div class="form-group">
+        <label asp-for="BookId" class="control-label">Book Id</label>
+        <input asp-for="BookId" class="form-control" disabled />
+        <input asp-for="BookId" type="hidden" value="@Model.BookId" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Title" class="control-label">Title</label>
+        <input asp-for="Title" class="form-control" disabled />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Genre" class="control-label">Genre</label>
+        <input asp-for="Genre" class="form-control" disabled />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PublicationYear" class="control-label">Publication Year</label>
+        <input asp-for="PublicationYear" class="form-control" type="number" disabled />
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

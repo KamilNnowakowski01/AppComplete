@@ -1,0 +1,32 @@
+﻿@model List<Publisher>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="text-center">
+    <h1 class="display-4">Publishers</h1>
+</div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Year Founded</th>
+                <th>Books Published</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var publisher in Model)
+            {
+                <tr>
+                    <td>@publisher.PublisherId</td>
+                    <td>@publisher.Name</td>
+                    <td>@publisher.Address</td>
+                    <td>@publisher.YearFounded</td>
+                    <td>@publisher.Books.Count()</td>
+                </tr>
+            }
+        </tbody>
+    </table>

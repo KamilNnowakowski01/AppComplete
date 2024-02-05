@@ -1,0 +1,45 @@
+﻿@model List<Publisher>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="text-center">
+    <h1 class="display-4">Publishers</h1>
+</div>
+<div class="container">
+    <div class="row justify-content-end">
+        <div class="col-1">
+            <a asp-action="Create" class="btn btn-primary">Create</a>
+        </div>
+    </div>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Year Founded</th>
+            <th>Books Published</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var publisher in Model)
+        {
+            <tr>
+                <td>@publisher.PublisherId</td>
+                <td>@publisher.Name</td>
+                <td>@publisher.Address</td>
+                <td>@publisher.YearFounded</td>
+                <td>@publisher.Books.Count()</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@publisher.PublisherId" class="btn btn-secondary">Details</a>
+                    <a asp-action="Edit" asp-route-id="@publisher.PublisherId" class="btn btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@publisher.PublisherId" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

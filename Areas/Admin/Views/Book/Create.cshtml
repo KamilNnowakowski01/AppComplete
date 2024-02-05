@@ -1,0 +1,74 @@
+﻿@model AppModel.ViewModels.BookWithListCollectionVM
+
+@{
+    ViewData["Title"] = "Create Publisher";
+}
+
+<h2>Create Publisher</h2> 
+
+<form asp-action="Create" method="post" class="mt-4">
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label asp-for="Book.Title" class="control-label">Name</label>
+        <input asp-for="Book.Title" class="form-control" />
+        <span asp-validation-for="Book.Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Book.Genre" class="control-label">Address</label>
+        <input asp-for="Book.Genre" class="form-control" />
+        <span asp-validation-for="Book.Genre" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Book.PublicationYear" class="control-label">Year Founded</label>
+        <input asp-for="Book.PublicationYear" class="form-control" type="number" />
+        <span asp-validation-for="Book.PublicationYear" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <select asp-for="Book.PublisherId" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="select-field" data-placeholder="Choose anything">
+            @foreach (var publisher in Model.Publishers)
+            {
+                <option value="@publisher.PublisherId">@publisher.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AuthorsIds" class="control-label">Book Authors</label>
+        <select asp-for="AuthorsIds" class="form-select" id="multiple-select-field" data-placeholder="Choose anything" multiple>
+            @foreach (var author in Model.Authors)
+            {
+                <option value="@author.AuthorId">
+                    @author?.FirstName
+                    @author?.LastName
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+        <script>
+            $(document).ready(function () {
+                $('#multiple-select-field').select2({
+                    theme: "bootstrap-5",
+                    placeholder: "Choose anything",
+                    closeOnSelect: false
+                });
+            });
+        </script>
+    }
+}

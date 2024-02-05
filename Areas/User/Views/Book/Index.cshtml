@@ -1,0 +1,42 @@
+﻿@model List<Book>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="text-center">
+    <h1 class="display-4">Books</h1>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tytuł</th>
+            <th>Gatunek</th>
+            <th>Rok Wydania</th>
+            <th>Wydawcy</th>
+            <th>Autorzy</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.BookId</td>
+                <td>@book.Title</td>
+                <td>@book.Genre</td>
+                <td>@book.PublicationYear</td>
+                <td>@book.Publisher?.Name</td>
+                <td>
+                    @foreach (var bookAuthor in book.BookAuthors)
+                    {
+                        @bookAuthor.Author?.FirstName
+                        @Html.Raw("&nbsp;")
+                        @bookAuthor.Author?.LastName
+                        <br />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
